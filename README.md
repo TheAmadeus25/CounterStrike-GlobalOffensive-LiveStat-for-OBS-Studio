@@ -1,5 +1,5 @@
 # Counter Strike: Global Offensive LiveStat for OBS-Studio
-It show your personal LIVEstats of Counter-Strike: Global Offensive while streaming. It make use of the **[official API from Valve](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration)** and can be integrated in OBS-Studio _(or every streaming software which can **read textfiles in real-time**)_.
+It show your personal LIVEstats of Counter-Strike: Global Offensive while streaming. It make use of the **[official API from Valve](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration#Sample_HTTP_POST_Endpoint_Server)** and can be integrated in OBS-Studio _(or every streaming software which can **read textfiles in real-time**)_.
 
 ❗ **Read the [Wiki](https://github.com/TheAmadeus25/CounterStrike-GlobalOffensive-LiveStat-for-OBS-Studio/wiki) how to install it.**
 
