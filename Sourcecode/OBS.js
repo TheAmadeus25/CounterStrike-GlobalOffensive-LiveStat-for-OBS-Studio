@@ -2,7 +2,7 @@
   ┌──────────────────────────────────────────────────────────────────────────────────┐
   │ Counter Strike: Global Offensive LiveStats for OBS-Studio by TheAmadeus25        ┃
   ├──────────────────────────────────────────────────────────────────────────────────┤
-  │ https://theamadeus25.github.io/            /                                     ┃
+  │ https://theamadeus25.github.io/CounterStrike-GlobalOffensive-LiveStat-for-OBS-Studio/
   ├──────────────────────────────────────────────────────────────────────────────────┤
   │ IMPORTANT! If you like it, please share and like it! If you use this in your     ┃
   │ project, please mention me and add the URL to my GitHub page, too.               ┃
