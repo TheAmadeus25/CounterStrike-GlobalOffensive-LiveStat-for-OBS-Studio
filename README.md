@@ -23,3 +23,5 @@ It show your personal LIVEstats of Counter-Strike: Global Offensive while stream
 It's a basic script and 100% open-source. I saw some unused variable while playing a match _(e.g. bomb planted/defused/explode, Headshoot counter, and more)_ and will be added later. Also in the future, I try to convert this into a webpage. Maybe it act faster and works still without _myPHPadmin_ and _Apache_. Well, this script need **[Node.js](https://nodejs.org/)**, because of Valve's API.
 
 If you like it, please like and share this so everybody sees. If you want use this in your own project, please make sure there is a URL to this page and mention me. Feel free for a little donate.
+
+P.S. Maybe you don't know it already but I'm a little bit crazy 🤓. If everything works like I expected, I'll add this feature as Watchface for this **[Social and Gaming Smartwatch](https://theamadeus25.github.io/LaColorduino/)**. Maybe I create a full-room-ambilight which change colour depending on of your in game health?? This would be epic and uniqe, kind of!
