@@ -14,7 +14,7 @@
   │                                                                                  ┃
   │                                                                                  ┃
   ├──────────────────────────┬───────────────────────────────────────────────────────┤
-  │ Version: 0.1.0 - BETA      Date: 23.Jul.2019                                     ┃
+  │ Version: 0.2.0 - BETA      Date: 24.Jul.2019                                     ┃
   ├──────────────────────────┴───────────────────────────────────────────────────────┤
   │                                                                                  ┃
   │                                                                                  ┃
@@ -26,7 +26,7 @@ fs = require('fs');																		// FileSharing
 
 // Read the Wiki on GitHub for more precise information about the configuration
 port = 65000;																			// change PORT of your Computer with CS:GO into one of your "gamestate_integration..."-file
-host = '192.168.178.2';																	// Change IP of your Computer with CS:GO into your Internal IP
+host = '192.168.178.23';																	// Change IP of your Computer with CS:GO into your Internal IP
 
 // ---
 
@@ -144,7 +144,7 @@ server = http.createServer( function(req, res) {										// Starting our Server
 				burning 		= obs.player.state.burning;								// Parsing JSON into variable
 				money 			= obs.player.state.money;								// Parsing JSON into variable
 				round_kills 	= obs.player.state.round_kills;							// Parsing JSON into variable
-				round_killshs 	= obs.player.state.round_killshs;						// Parsing JSON into variable
+				round_killshs 	= obs.player.state.round_killhs;						// Parsing JSON into variable
 				equip_value 	= obs.player.state.equip_value;							// Parsing JSON into variable
 			} catch (e) {																// Catch errorcode
 				return console.log("FAILED Parsing JSON: 'player.state'");				// The Game doesn't send ALL Information at once. JSON crash immediately if no data are send (e.g. { })
@@ -187,21 +187,35 @@ server = http.createServer( function(req, res) {										// Starting our Server
 				// if (err) throw err;
 			});
 			
-			fs.writeFile('round.txt', "Phase: " + round_phase + "          ", (err) => {
+			fs.writeFile('round.txt', "Phase: " + round_phase + "     ", (err) => {
 				// if (err) throw err;
 			});
 			
-			fs.writeFile('player.txt', "Equip: " + equip_value + "$", (err) => {
+			fs.writeFile('player.txt', "$" + equip_value, (err) => {
 				// if (err) throw err;
 			});
 			
-			fs.writeFile('player_match_stats.txt', "K/A/D: " + kills + " | " + assists + " | " + deaths + " | ✫ " + mvps, (err) => {
+			fs.writeFile('player_match_stats.txt', "K/A/D   " + kills + " | " + assists + " | " + deaths + " ✫ " + mvps, (err) => {
 				// if (err) throw err;
 			});
 			
 			fs.writeFile('added.txt', " (empty)", (err) => {
 				// if (err) throw err;
 			});
+			
+			
+			if (round_killshs != 0) {
+				fs.writeFile('headshot.txt', "Headshot: " + round_killshs, (err) => {
+				// if (err) throw err;
+				});
+			} else {
+				fs.writeFile('headshot.txt', "", (err) => {
+				// if (err) throw err;
+				});
+			}
+			
+			
+			
 			
 			// ---
 			
