@@ -5,8 +5,6 @@ It show your personal LIVEstats of Counter-Strike: Global Offensive while stream
 
 ❕ **It generates JSON-parsed text files, only, but are full and easy customizable. Text position, size, font type, font- and background-color are set in OBS-Studio itself and independent of the script. Refresh of value are instantly but OBS-Studio has a rate of around 1 sec. You can change the output text inside of the script without recompiling.**
 
-⚠ At the moment, it doesn't work on VAC sercured server. _(I didn't noticed that some server are not secured)_ 😑
-
 ***
 
 # Stream Preview (GIF)
