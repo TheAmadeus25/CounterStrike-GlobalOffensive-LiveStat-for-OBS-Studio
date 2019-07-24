@@ -10,17 +10,20 @@ It show your personal LIVEstats of Counter-Strike: Global Offensive while stream
 # Stream Preview (GIF)
 
 **Preview Kill counter**
-![Kill_Counter_GIF](https://github.com/TheAmadeus25/CounterStrike-GlobalOffensive-LiveStat-for-OBS-Studio/blob/master/Photos/Kill%20Counter.gif?raw=true)
+![Kill_Counter_GIF](https://github.com/TheAmadeus25/CounterStrike-GlobalOffensive-LiveStat-for-OBS-Studio/blob/master/Photos/Kill%20Counter.gif)
 
 **Preview Equiped Value**
-![Equiped_Value_GIF](https://github.com/TheAmadeus25/CounterStrike-GlobalOffensive-LiveStat-for-OBS-Studio/blob/master/Photos/Equiped%20Value.gif?raw=true)
+![Equiped_Value_GIF](https://github.com/TheAmadeus25/CounterStrike-GlobalOffensive-LiveStat-for-OBS-Studio/blob/master/Photos/Equiped%20Value.gif)
 
 **Preview Mode, Map and Phase**
-![Mode_Map_Phase_GIF](https://github.com/TheAmadeus25/CounterStrike-GlobalOffensive-LiveStat-for-OBS-Studio/blob/master/Photos/Map%20and%20Round.gif?raw=true)
+![Mode_Map_Phase_GIF](https://github.com/TheAmadeus25/CounterStrike-GlobalOffensive-LiveStat-for-OBS-Studio/blob/master/Photos/Map%20and%20Round.gif)
+
+**Headshot**
+![Headshot_GIF](https://github.com/TheAmadeus25/CounterStrike-GlobalOffensive-LiveStat-for-OBS-Studio/blob/master/Photos/Headshot.gif)
 
 ***
 
-It's a basic script and 100% open-source. I saw some unused variable while playing a match _(e.g. bomb planted/defused/explode, Headshoot counter, and more)_ and will be added later. Also in the future, I try to convert this into a webpage. Maybe it act faster and works still without _myPHPadmin_ and _Apache_. Well, this script need **[Node.js](https://nodejs.org/)**, because of Valve's API.
+It's a basic script and 100% open-source. I saw some unused variable while playing a match _(e.g. bomb planted/defused/explode, and more)_ and will be added later. Also in the future, I try to convert this into a webpage. Maybe it act faster and works still without _myPHPadmin_ and _Apache_. Well, this script need **[Node.js](https://nodejs.org/)**, because of Valve's API.
 
 If you like it, please like and share this so everybody sees. If you want use this in your own project, please make sure there is a URL to this page and mention me. Feel free for a little **[Donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GLQ52YVTN24CN&source=url)**.
 
