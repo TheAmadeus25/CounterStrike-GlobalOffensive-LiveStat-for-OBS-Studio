@@ -31,4 +31,6 @@ It's a basic addon and 100% open-source. I saw some unused variable while playin
 
 If you like it, please like and share this so everybody see it. If you want use this in your own project, please make sure there is a URL to this page and mention me. Feel free for a little **[Donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GLQ52YVTN24CN&source=url)**.
 
-P.S. Maybe you don't know it already but I'm a little bit crazy 🤓. If everything works like I expected, I'll add this feature as Watchface for this **[Social and Gaming Smartwatch](https://theamadeus25.github.io/LaColorduino/)**. Maybe I create a full-room-ambilight which change colour depending on of your in game health?? This would be epic and uniqe, kind of!
+P.S. Maybe you don't know it already but I'm a little bit crazy 🤓. If everything works like I expected, I'll add this feature as Watchface for this **[Social and Gaming Smartwatch](https://theamadeus25.github.io/LaColorduino/)**.
+
+Maybe I create a full-room-ambilight which change colour depending of your in game health?? It need to transfer this Information to my Arduino/ESP8266 Microcontroller, which controls some RGB-LED-Strips. This would be epic and uniqe, kind of!
