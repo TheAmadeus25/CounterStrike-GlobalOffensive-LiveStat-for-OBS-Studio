@@ -3,7 +3,7 @@ It show your personal LIVEstats of Counter-Strike: Global Offensive while stream
 
 ❗ **Read the [Wiki](https://github.com/TheAmadeus25/CounterStrike-GlobalOffensive-LiveStat-for-OBS-Studio/wiki) how to install it.**
 
-❕ **It generates JSON-parsed text files, only, but are full and easy customizable. Text position, size, font type, font- and background-color are set in OBS-Studio itself and independent of the script. Refresh of value are instantly but OBS-Studio has a rate of around 1 sec. You can change the output text inside of the script without recompiling.**
+❕ **It generates JSON-parsed text files, only, but are full and easy customizable. Text position, size, font type, font- and background-color are set in OBS-Studio itself and independent of the addon. Refresh of value are instantly but OBS-Studio has a rate of around 1 sec. You can change the output text inside of the addon without recompiling.**
 
 ***
 
@@ -27,7 +27,7 @@ It show your personal LIVEstats of Counter-Strike: Global Offensive while stream
 
 ***
 
-It's a basic script and 100% open-source. I saw some unused variable while playing a match and will be added later. Also in the future, I try to convert this into a webpage. Maybe it act faster and works still without _myPHPadmin_ and _Apache_. Well, this script need **[Node.js](https://nodejs.org/)**, because of Valve's API.
+It's a basic addon and 100% open-source. I saw some unused variable while playing a match and will be added later. Also in the future, I try to convert this into a webpage. Maybe it act faster and works still without _myPHPadmin_ and _Apache_. Well, this script need **[Node.js](https://nodejs.org/)**, because of Valve's API.
 
 If you like it, please like and share this so everybody see it. If you want use this in your own project, please make sure there is a URL to this page and mention me. Feel free for a little **[Donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GLQ52YVTN24CN&source=url)**.
 
