@@ -213,6 +213,17 @@ server = http.createServer( function(req, res) {										// Starting our Server
 				// if (err) throw err;
 				});
 			}
+
+			
+			if (bomb == "planted" || bomb == "exploded" || bomb == "defused") {
+				fs.writeFile('bomb.txt', "Bomb: " + bomb, (err) => {
+				// if (err) throw err;
+				});
+			} else {
+				fs.writeFile('bomb.txt', "", (err) => {
+				// if (err) throw err;
+				});
+			}
 			
 			
 			
