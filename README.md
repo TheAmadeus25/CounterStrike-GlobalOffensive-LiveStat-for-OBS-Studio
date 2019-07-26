@@ -21,6 +21,10 @@ It show your personal LIVEstats of Counter-Strike: Global Offensive while stream
 **Headshot**
 ![Headshot_GIF](https://github.com/TheAmadeus25/CounterStrike-GlobalOffensive-LiveStat-for-OBS-Studio/blob/master/Photos/Headshot.gif)
 
+**Bomb**
+![Bomb_GIF](https://github.com/TheAmadeus25/CounterStrike-GlobalOffensive-LiveStat-for-OBS-Studio/blob/master/Photos/Bomb.gif)
+
+
 ***
 
 It's a basic script and 100% open-source. I saw some unused variable while playing a match _(e.g. bomb planted/defused/explode, and more)_ and will be added later. Also in the future, I try to convert this into a webpage. Maybe it act faster and works still without _myPHPadmin_ and _Apache_. Well, this script need **[Node.js](https://nodejs.org/)**, because of Valve's API.
