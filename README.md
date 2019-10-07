@@ -7,6 +7,8 @@ It show your personal LIVEstats of Counter-Strike: Global Offensive while stream
 
 💬 **Official VAC Review pending!**
 
+✔ **It support [CounterStrike GlobalOffensive - Ambilight-System](https://github.com/TheAmadeus25/CounterStrike-GlobalOffensive-Ambilight-System) which react to your in-game stats like health, armor, and many more.**
+
 ***
 
 # Stream Preview (GIF)
