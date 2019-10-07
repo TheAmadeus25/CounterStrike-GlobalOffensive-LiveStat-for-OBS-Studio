@@ -14,19 +14,23 @@
   │                                                                                  ┃
   │                                                                                  ┃
   ├──────────────────────────┬───────────────────────────────────────────────────────┤
-  │ Version: 0.3.0 - BETA      Date: 26.Jul.2019                                     ┃
+  │ Version: 0.4.0 - BETA      Date: 26.Jul.2019                                     ┃
   ├──────────────────────────┴───────────────────────────────────────────────────────┤
-  │ + Headshot File                                                                  ┃
-  │                                                                                  ┃
+  │ + Add Support for Websocket UDP (e.g. ESP8266 in this case)                      ┃
+  │ → https://github.com/TheAmadeus25/CounterStrike-GlobalOffensive-Ambilight-System ┃
   └──────────────────────────────────────────────────────────────────────────────────┘
 */
 
-http = require('http');																	// Communication via HTTP
+http = require('http');																	// Communication via HTTP for CS:GO
 fs = require('fs');																		// FileSharing
+
+dgram = require('dgram');
+
 
 // Read the Wiki on GitHub for more precise information about the configuration
 port = 65000;																			// change PORT of your Computer with CS:GO into one of your "gamestate_integration..."-file
 host = '192.168.178.23';																	// Change IP of your Computer with CS:GO into your Internal IP
+
 
 // ---
 
@@ -109,6 +113,24 @@ server = http.createServer( function(req, res) {										// Starting our Server
 			} catch (e) {																// Catch errorcode
 				return console.log("FAILED Parsing JSON: 'map'");						// The Game doesn't send ALL Information at once. JSON crash immediately if no data are send (e.g. { })
 				//return console.error(e);
+				
+				fs.writeFile('map.txt', "", (err) => {
+				// if (err) throw err;
+			});
+				
+				fs.writeFile('round.txt', "", (err) => {
+				// if (err) throw err;
+			});
+			
+			fs.writeFile('player.txt', "", (err) => {
+				// if (err) throw err;
+			});
+			
+			fs.writeFile('player_match_stats.txt', "", (err) => {
+				// if (err) throw err;
+			});
+			
+				
 			}
 				
 				
@@ -173,7 +195,10 @@ server = http.createServer( function(req, res) {										// Starting our Server
 			} catch (e) {																// Catch errorcode
 				return console.log("FAILED Parsing JSON: 'provider'");					// The Game doesn't send ALL Information at once. JSON crash immediately if no data are send (e.g. { })
 				//return console.error(e);
-			}	
+			}
+			
+			console.log("-----------------------------------------------------------------------------");
+			
 				
 			
 			// Add Information to File's
@@ -199,7 +224,7 @@ server = http.createServer( function(req, res) {										// Starting our Server
 				// if (err) throw err;
 			});
 			
-			fs.writeFile('added.txt', " (empty)", (err) => {
+			fs.writeFile('added.txt', "(empty)", (err) => {
 				// if (err) throw err;
 			});
 			
@@ -226,19 +251,31 @@ server = http.createServer( function(req, res) {										// Starting our Server
 			}
 			
 			
-			
-			
+			// ---
+			var message = new Buffer.from(health + ';' + armor + ';' + helmet + ';' + win_team + ';' + flashed + ';');
+				
+			var client = dgram.createSocket('udp4');
+			client.send(message, 0, message.length, 65001, '192.168.178.48', function(err, bytes) {
+			if (err) throw err;
+			console.log('UDP message sent to 192.168.178.48:65001');
+			client.close();
+			});
+				
+				
 			// ---
 			
         });
 			
     }
-    else
-    {
-        console.log("Not expecting other request types...");							// 
-        res.writeHead(200, {'Content-Type': 'text/html'});
-		var html = '<html><body>HTTP Server at http://' + host + ':' + port + '</body></html>';
-        res.end(html);
+    else if (req.method == 'GET') {	
+		//res.end('Response from 65001');
+		res.end('ERROR');
+        //res.end(round_killshs + ';');
+		
+		//console.log("Not expecting other request types...");							// 
+        //res.writeHead(200, {'Content-Type': 'text/html'});
+		//var html = '<html><body>HTTP Server at http://' + host + ':' + port + '</body></html>';
+        //res.end(html);
     }
 
 });
