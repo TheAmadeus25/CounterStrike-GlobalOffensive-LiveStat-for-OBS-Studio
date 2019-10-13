@@ -14,10 +14,13 @@
   │                                                                                  ┃
   │                                                                                  ┃
   ├──────────────────────────┬───────────────────────────────────────────────────────┤
-  │ Version: 0.4.0 - BETA      Date: 26.Jul.2019                                     ┃
+  │ Version: 0.5.0 - BETA      Date: 12.Oct.2019                                     ┃
   ├──────────────────────────┴───────────────────────────────────────────────────────┤
   │ + Add Support for Websocket UDP (e.g. ESP8266 in this case)                      ┃
   │ → https://github.com/TheAmadeus25/CounterStrike-GlobalOffensive-Ambilight-System ┃
+  │ + Add color for console                                                          ┃
+  │ - Removing all Error return for JSON Parsing (its blocking for CSGO Ambilight)   ┃
+  │ + Add error Message for TxT-Files                                                ┃
   └──────────────────────────────────────────────────────────────────────────────────┘
 */
 
@@ -31,6 +34,8 @@ dgram = require('dgram');
 port = 65000;																			// change PORT of your Computer with CS:GO into one of your "gamestate_integration..."-file
 host = '192.168.178.23';																	// Change IP of your Computer with CS:GO into your Internal IP
 
+espPort = 65001;
+espIP   = '192.168.178.48';
 
 // ---
 
@@ -72,7 +77,7 @@ var provider_name, appid, version, steamid, timestamp;
 server = http.createServer( function(req, res) {										// Starting our Server/Loop
 
     if (req.method == 'POST') {															// Communication with POST-request (similar like in PHP)
-        console.log("\nHandling POST request...");										// Console output
+        console.log('\x1b[32m%s\x1b[0m',"Handling POST request...");					// Console output in green
         res.writeHead(200, {'Content-Type': 'text/html'});								// HTML Header with code: 200 (OK)
 
         var body = '';																	// (Re-)declare and clear variable body as Input buffer
@@ -80,7 +85,7 @@ server = http.createServer( function(req, res) {										// Starting our Server
             body += data;																// Add new data into buffer without overwrite
         });
         req.on('end', function () {														// Stop receving data
-            console.log(body);															// Show Input buffer on Console
+            console.log('\x1b[33m%s\x1b[0m',body);										// Show Input buffer on Console in yellow
         	res.end( '' );																// 
 			
 			// ---
@@ -88,7 +93,7 @@ server = http.createServer( function(req, res) {										// Starting our Server
 			try {																		// Try-Catch prevent from stopping this Server/Script
 				obs = JSON.parse(body);													// Parsing JSON File catched from the Game
 			} catch (e) {																// Catch errorcode
-				return console.log("FAILED Parsing JSON");								// The Game doesn't send ALL Information at once. JSON crash immediately if no/not all data are send (e.g. { } after startup)
+				return console.log('\x1b[31m%s\x1b[0m',"FAILED Parsing JSON");			// The Game doesn't send ALL Information at once. JSON crash immediately if no/not all data are send (e.g. { } after startup) in red
 				//return console.error(e);
 			}
 			
@@ -111,35 +116,38 @@ server = http.createServer( function(req, res) {										// Starting our Server
 				matches_won_this_series_t  	= obs.map.team_t.matches_won_this_series;	// Parsing JSON into variable
 				num_matches_to_win_series_t	= obs.map.num_matches_to_win_series;		// Parsing JSON into variable
 			} catch (e) {																// Catch errorcode
-				return console.log("FAILED Parsing JSON: 'map'");						// The Game doesn't send ALL Information at once. JSON crash immediately if no data are send (e.g. { })
+				console.log('\x1b[31m%s\x1b[0m',"FAILED Parsing JSON: 'map'");	// The Game doesn't send ALL Information at once. JSON crash immediately if no data are send (e.g. { }) in red
 				//return console.error(e);
 				
 				fs.writeFile('map.txt', "", (err) => {
 				// if (err) throw err;
+				console.log('\x1b[31m%s\x1b[0m',"FAILED create/write File: 'map.txt'");
 			});
 				
 				fs.writeFile('round.txt', "", (err) => {
 				// if (err) throw err;
+				console.log('\x1b[31m%s\x1b[0m',"FAILED create/write File: 'round.txt'");
 			});
 			
 			fs.writeFile('player.txt', "", (err) => {
 				// if (err) throw err;
+				console.log('\x1b[31m%s\x1b[0m',"FAILED create/write File: 'player.txt'");
 			});
 			
 			fs.writeFile('player_match_stats.txt', "", (err) => {
 				// if (err) throw err;
+				console.log('\x1b[31m%s\x1b[0m',"FAILED create/write File: 'player_match_stats.txt'");
 			});
-			
 				
 			}
-				
+	
 				
 			try {																		// Try-Catch prevent from stopping this Server/Script
 				round_phase = obs.round.phase;											// Parsing JSON into variable
 				win_team	= obs.round.win_team;										// Parsing JSON into variable
 				bomb		= obs.round.bomb;											// Parsing JSON into variable
 			} catch (e) {																// Catch errorcode
-				return console.log("FAILED Parsing JSON: 'round'");						// The Game doesn't send ALL Information at once. JSON crash immediately if no data are send (e.g. { })
+				console.log('\x1b[31m%s\x1b[0m',"FAILED Parsing JSON: 'round'");	// The Game doesn't send ALL Information at once. JSON crash immediately if no data are send (e.g. { }) in red
 				//return console.error(e);
 			}
 				
@@ -151,7 +159,7 @@ server = http.createServer( function(req, res) {										// Starting our Server
 				team 			= obs.player.team;										// Parsing JSON into variable
 				activity 		= obs.player.activity;									// Parsing JSON into variable
 			} catch (e) {																// Catch errorcode
-				return console.log("FAILED Parsing JSON: 'player'");					// The Game doesn't send ALL Information at once. JSON crash immediately if no data are send (e.g. { })
+				console.log('\x1b[31m%s\x1b[0m',"FAILED Parsing JSON: 'player'");// The Game doesn't send ALL Information at once. JSON crash immediately if no data are send (e.g. { }) in red
 				//return console.error(e);
 			}
 				
@@ -169,7 +177,7 @@ server = http.createServer( function(req, res) {										// Starting our Server
 				round_killshs 	= obs.player.state.round_killhs;						// Parsing JSON into variable
 				equip_value 	= obs.player.state.equip_value;							// Parsing JSON into variable
 			} catch (e) {																// Catch errorcode
-				return console.log("FAILED Parsing JSON: 'player.state'");				// The Game doesn't send ALL Information at once. JSON crash immediately if no data are send (e.g. { })
+				console.log('\x1b[31m%s\x1b[0m',"FAILED Parsing JSON: 'player.state'");				// The Game doesn't send ALL Information at once. JSON crash immediately if no data are send (e.g. { }) in red
 				//return console.error(e);
 			}	
 				
@@ -181,7 +189,7 @@ server = http.createServer( function(req, res) {										// Starting our Server
 				deaths  = obs.player.match_stats.deaths;								// Parsing JSON into variable
 				mvps    = obs.player.match_stats.mvps;									// Parsing JSON into variable
 			} catch (e) {																// Catch errorcode
-				return console.log("FAILED Parsing JSON: 'player.match_stats'");		// The Game doesn't send ALL Information at once. JSON crash immediately if no data are send (e.g. { })
+				console.log('\x1b[31m%s\x1b[0m',"FAILED Parsing JSON: 'player.match_stats'");		// The Game doesn't send ALL Information at once. JSON crash immediately if no data are send (e.g. { }) in red
 			//	//return console.error(e);
 			}
 				
@@ -193,11 +201,11 @@ server = http.createServer( function(req, res) {										// Starting our Server
 				steamid 		= obs.provider.steamid;									// Parsing JSON into variable
 				timestamp 		= obs.provider.timestamp;								// Parsing JSON into variable
 			} catch (e) {																// Catch errorcode
-				return console.log("FAILED Parsing JSON: 'provider'");					// The Game doesn't send ALL Information at once. JSON crash immediately if no data are send (e.g. { })
+				console.log('\x1b[31m%s\x1b[0m',"FAILED Parsing JSON: 'provider'");					// The Game doesn't send ALL Information at once. JSON crash immediately if no data are send (e.g. { }) in red
 				//return console.error(e);
 			}
 			
-			console.log("-----------------------------------------------------------------------------");
+			console.log("--------------------------------------------------------------");
 			
 				
 			
@@ -252,12 +260,13 @@ server = http.createServer( function(req, res) {										// Starting our Server
 			
 			
 			// ---
-			var message = new Buffer.from(health + ';' + armor + ';' + helmet + ';' + win_team + ';' + flashed + ';');
+			var message = new Buffer.from(health + ';' + armor + ';' + helmet + ';' + win_team + ';' + flashed + ';' + smoked + ';' + activity + ';');
 				
 			var client = dgram.createSocket('udp4');
-			client.send(message, 0, message.length, 65001, '192.168.178.48', function(err, bytes) {
+			client.send(message, 0, message.length, espPort, espIP, function(err, bytes) {
 			if (err) throw err;
-			console.log('UDP message sent to 192.168.178.48:65001');
+			console.log('\x1b[36m%s\x1b[0m','UDP message sent to ' + espIP + ':' + espPort);
+			console.log("--------------------------------------------------------------");
 			client.close();
 			});
 				
@@ -269,7 +278,7 @@ server = http.createServer( function(req, res) {										// Starting our Server
     }
     else if (req.method == 'GET') {	
 		//res.end('Response from 65001');
-		res.end('ERROR');
+		res.end('Sorry, we wont buy anything. Please leave us alone');
         //res.end(round_killshs + ';');
 		
 		//console.log("Not expecting other request types...");							// 
@@ -281,4 +290,8 @@ server = http.createServer( function(req, res) {										// Starting our Server
 });
 
 server.listen(port, host);
-console.log('Listening at http://' + host + ':' + port);
+
+console.log('\x1b[36m%s\x1b[0m','Listening at: http://' + host + ':' + port);
+console.log('\x1b[36m%s\x1b[0m','ESP8266   at: http://' + espIP + ':' + espPort);
+
+// Change color: https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
